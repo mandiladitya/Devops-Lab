@@ -1,0 +1,58 @@
+docker-compose ?
+how to install
+how to create docker-cmpose file
+basic commands
+docker-compose ps
+docker-compose start
+docker-compose up -d
+docker-compose down
+docker-compose up -d --scale servicename=4
+
+vim docker-compose.yml
+
+services:
+ web:
+ image: httpd
+ database:
+  image: mysql
+ orachestratoin:
+  image: ansible
+
+---------------------
+
+docker-compose ps 
+vim docker-compose.yml
+
+version: '3'
+
+services:
+
+ mysql:
+  image: mysql
+  environment:
+  MYSQL_ROOT_PSSWORD: password
+ 
+ wordpress:
+ image: wordpress
+ ports:
+  - 7070:80
+ environment:
+  WORDPRESS_DB_PASSWORD: password
+
+
+docker-compose config
+docker-compose start
+
+docker-compose up -d
+docker-compose down
+docker-compose 
+
+docker run -d --name=web --link redis:redis voting app
+
+#mysql
+docker build -t my/mysql docker-mysql
+docker run -p 3306:3306 --name mysql -d my/mysql:latest
+
+#webapp
+docker build -t my/tomcat:7.0 tomcat/7.0
+docker run -d --link mysql --name tomcat7 my/tomcat:7.0
