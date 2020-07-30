@@ -1,0 +1,26 @@
+--mount type=TYPE,TYPE-SPECIFIC-OPTION[,...]
+   Attach a filesystem mount to the container
+
+       Current supported mount TYPES are bind, volume, and tmpfs. e.g.
+
+       type=bind,source=/path/on/host,destination=/path/in/container
+
+       type=volume,source=my-volume,destination=/path/in/container,volume-label="color=red",volume-label="shape=round"
+
+       type=tmpfs,tmpfs-size=512M,destination=/path/in/container
+
+       Common Options:
+
+       · src, source: mount source spec for bind and volume. Mandatory for bind.
+
+       · dst, destination, target: mount destination spec.
+
+       · ro, readonly: true or false (default).
+
+       Note: setting readonly for a bind mount does not make its submounts
+       
+       #mkdir /data
+       #docker run -it   --mount type=bind,source=/data,target=/app,readonly  ubuntu
+       
+       #docker volume create myvol
+       #docker run -it   --mount type=volume,source=data,target=/app,readonly  ubuntu
